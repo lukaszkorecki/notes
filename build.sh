@@ -1,9 +1,14 @@
 mkdir -p doc/
-echo "# Notes" > doc/index.md
+root='doc/index.md'
+
+echo "# Notes" > $root
 
 for f in $(ls *.md | sort -r | grep -v README) ; do
-  cat $f >> doc/index.md
-  echo "> $(date -r $(stat -f '%c' $f))" >> doc/index.md
-  echo '---' >> doc/index.md
+  echo "> $(date -r $(stat -f '%c' $f))" >> $root
+  echo "" > $root
+  cat $f >> $root
+  echo "" > $root
+  echo '---' >> $root
+  echo "" > $root
 
 done
